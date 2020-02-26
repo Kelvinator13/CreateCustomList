@@ -8,11 +8,24 @@ namespace CustomListProject
 {
     public class CustomList<T>
     {
-        public void Add(T item)
+
+            //member variable
+            int count;
+            int capacity;
+            T[] items;
+
+        //Construct
+        public CustomList()
         {
-
-
+            count = 0;
+            capacity = 4;
+            items = new T[capacity];
         }
+        private class custom<T1>
+        {
+            
+        }
+    }
 
     }
 }

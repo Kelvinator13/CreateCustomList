@@ -56,6 +56,8 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
 
+
+
         }
         [TestMethod]
         public void Add_OrganizeThreeNumbers_ZeroIndex()
@@ -98,5 +100,8 @@ namespace CustomListUnitTest
             Assert.AreEqual(expected, actual);
 
         }
+
+        public void Remove_Consecutive
+
     }
 }
