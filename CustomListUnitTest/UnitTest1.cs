@@ -67,12 +67,14 @@ namespace CustomListUnitTest
             int value5 = 6;
             int value6 = 8;
             int actual;
+            int expected = 4;
 
             //Act
             myList.Add(value4);
             myList.Add(value5);
             myList.Add(value6);
             actual = myList[0];
+            
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -85,7 +87,7 @@ namespace CustomListUnitTest
             CustomList<int> myList = new CustomList<int>();
             int[] arr = {4};
             int value7 = 22222;
-            int expected = 22222;
+            int expected = 6;
             int actual;
 
             //Act
@@ -94,14 +96,15 @@ namespace CustomListUnitTest
             myList.Add(value7);
             myList.Add(value7);
             myList.Add(value7);
-            actual = myList[0];
+            myList.Add(6);
+            actual = myList[5];
 
             //Assert
             Assert.AreEqual(expected, actual);
 
         }
 
-        public void Remove_Consecutive
+        // public void Remove_Consecutive()
 
     }
 }

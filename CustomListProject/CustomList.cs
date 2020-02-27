@@ -1,18 +1,21 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomListProject
 {
     public class CustomList<T>
     {
 
-            //member variable
-            int count;
-            int capacity;
-            T[] items;
+        //member variable
+        int count;
+        int capacity;
+        T[] items;
+        public T this[int i]
+        {
+            get { return items[i]; }
+            set { items[i] = value; }
+        }
 
         //Construct
         public CustomList()
@@ -21,51 +24,87 @@ namespace CustomListProject
             capacity = 4;
             items = new T[capacity];
         }
-        private class custom<T1>
-        {
-            private int number;
-            private int addNumber;
-            private string value;
-            private int removeNumber;
-            private int value1;
 
-            public custom (string value, int number, int addNumber, int removeNumber, int value1)
+        public void Add(T item)
+        {
+            if (count > capacity)
             {
-                this.value = value;
-                this.number = number;
-                this.addNumber = addNumber;
-                this.removeNumber = removeNumber;
-                this.value1 = value1;
+                items[count] = item;
+                count++;
             }
-            public int Value
+            else
             {
-                get { return  value; }
-                set { value = number; }
-            }
-            public int Number
-            {
-                get { return number; }
-                set { number = value; }
-            }
-            public int AddNumber
-            {
-                get { return addNumber; }
-                set { addNumber = value; }
-            }
-            public int RemoveNumber
-            {
-                get { return removeNumber; }
-                set { removeNumber = value; }
-            }
-            public int Value1
-            {
-                get { return value1; }
-                set { value1 = value; }
+                int capacity1 = capacity;
+                int counter = 0; T[] items1 = new T[capacity * 2];
+                while (counter < capacity1)
+                {
+                    items1[counter] = items[counter];
+                    counter++;
+                }
+
+                items1[count] = item;
+                items = items1; count++;
             }
         }
+        public bool Remove(T value)
+        {
+            bool isRemoved = false;
+            for (int i = 0; i < count; i++)
+            {
+                if (items[i].Equals(value))
+                {
+                    if (count == 1)
+                    {
+                        items = new T[4];
+                        isRemoved = true;
+                        break;
+                    }
+                    isRemoved = true;
+                    break; 
+                }
+            }
+            if (isRemoved)
+            {
+                count--;
+                return true; 
+            }
+            else
+            {
+                return false; 
+            }
+        }
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
 
-
-    }
-
+            for (int i = 0; i < count; i++)
+            {
+                stringBuilder.Append(items[i].ToString());
+            }
+            return stringBuilder.ToString();
+        }
+        public static CustomList<T> operator +(CustomList<T> valueOne, CustomList<T> add)
+        {
+            CustomList<T> tempList = new CustomList<T>();
+            foreach (T value in valueOne)
+            {
+                tempList.Add(value);
+            }
+            foreach (T value in add)
+            {
+                tempList.Add(value);
+            }
+            return tempList;
+        }
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
+        }
     }
 }
+
+
+ 
