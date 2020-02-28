@@ -113,6 +113,30 @@ namespace CustomListProject
             }
             return tempList; 
         }
+        public static List<T> Zip(List<T> one, List<T> two)
+        {
+            List<T> temp = new List<T>();
+
+            int count = 0;
+            int counter = 0;
+
+            while (count < two.Count + one.Count)
+            {
+                if (counter < one.Count)
+                {
+                    temp.Add(one.items[counter]);
+                    count++;
+                }
+                if (counter < two.Count)
+                {
+                    temp.Add(two.items[counter]);
+                    count++;
+                }
+                counter++;
+            }
+            return temp;
+        }
+
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < items.Length; i++)

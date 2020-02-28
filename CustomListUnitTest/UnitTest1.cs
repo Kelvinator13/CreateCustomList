@@ -101,11 +101,12 @@ namespace CustomListUnitTest
 
             //Assert
             Assert.AreEqual(expected, actual);
-
         }
-
-         public void Remove_
-       
-
+        [TestMethod]
+        public void Subtract_NegitiveInteger_ZeroIndex()
+        {
+            //Not possible
+            throw new ArgumentOutOfRangeException; 
+        }
     }
 }
