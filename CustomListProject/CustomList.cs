@@ -1,31 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System;
 
 namespace CustomListProject
 {
-    public class CustomList<T>
+    public class Custom<T> : IEnumerable
     {
 
         //member variable
-        int count;
-        int capacity;
-        T[] items;
-        public T this[int i]
-        {
-            get { return items[i]; }
-            set { items[i] = value; }
-        }
+        public int index;
+        public int count;
+        public int capacity;
+        public T[] items = new T[4];
+
 
         //Construct
-        public CustomList()
+
+        public Custom(int i)
         {
+            index = 0;
             count = 0;
             capacity = 4;
-            items = new T[capacity];
+        }
+        public void Add(T item)
+        {
+          
+            {
+               int count = 0;
+               int capacity = 4;
+                List<T> customList = new List<T>();
+            }
         }
 
-        public void Add(T item)
+        public void custo(T item)
         {
             if (count > capacity)
             {
@@ -38,12 +46,12 @@ namespace CustomListProject
                 int counter = 0; T[] items1 = new T[capacity * 2];
                 while (counter < capacity1)
                 {
-                    items1[counter] = items[counter];
+                    items1[counter] = items1[counter];
                     counter++;
                 }
 
                 items1[count] = item;
-                items = items1; count++;
+                T[]items = items1; count++;
             }
         }
         public bool Remove(T value)
@@ -55,7 +63,7 @@ namespace CustomListProject
                 {
                     if (count == 1)
                     {
-                        items = new T[4];
+
                         isRemoved = true;
                         break;
                     }
@@ -83,27 +91,38 @@ namespace CustomListProject
             }
             return stringBuilder.ToString();
         }
-        public static CustomList<T> operator +(CustomList<T> valueOne, CustomList<T> add)
+        public static List<T> operator +(List<T> one, List<T> two)
         {
-            CustomList<T> tempList = new CustomList<T>();
-            foreach (T value in valueOne)
+            List<T> tempList = new List<T>();
+            for (int i = 0; i < one.Count; i++)
             {
-                tempList.Add(value);
+                tempList.Add(one[i]);
             }
-            foreach (T value in add)
+            for (int i = 0; i < two.Count; i++)
             {
-                tempList.Add(value);
+                tempList.Add(two[i]);
             }
             return tempList;
         }
+        public static List<T> operator -(List<T> one, List<T> two)
+        {
+            List<T> tempList = one;
+            foreach  (T item in tempList)
+            {
+                tempList.Remove(item);
+            }
+            return tempList; 
+        }
         public IEnumerator GetEnumerator()
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < items.Length; i++)
             {
                 yield return items[i];
             }
         }
+
     }
+
 }
 
 

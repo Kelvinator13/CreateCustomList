@@ -104,7 +104,8 @@ namespace CustomListUnitTest
 
         }
 
-        // public void Remove_Consecutive()
+         public void Remove_
+       
 
     }
 }
